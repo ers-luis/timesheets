@@ -1,0 +1,34 @@
+
+<div class="container" fade-in>
+ <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Projects</div>
+  <div class="panel-body">
+    <p>List of projects</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Acronym</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+    <tr ng-repeat="p in projects">
+      <td>{{p.id}}</td>
+      <td>{{p.number}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.acronym}}</td>
+      <td>{{p.start}}</td>
+      <td>{{p.end}}</td>
+      <td>{{p.status}}</td>
+      <td>{{p.description}}</td>
+    </tr>
+  </table>
+ </div>
+</div>
