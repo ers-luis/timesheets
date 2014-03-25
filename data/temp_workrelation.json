@@ -1,0 +1,92 @@
+[
+    {
+        "id":"1",
+        "personid":"1",
+        "institutionid":"1",
+        "projectid":"1",
+        "start":"01 January 2011",
+        "end":"31 December 2020",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"2",
+        "personid":"2",
+        "institutionid":"2",
+        "projectid":"2",
+        "start":"01 January 2003",
+        "end":"31 December 2011",
+        "status":"off",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"3",
+        "personid":"3",
+        "institutionid":"1",
+        "projectid":"2",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"4",
+        "personid":"4",
+        "institutionid":"3",
+        "projectid":"1",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"5",
+        "personid":"5",
+        "institutionid":"4",
+        "projectid":"1",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"6",
+        "personid":"6",
+        "institutionid":"5",
+        "projectid":"4",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"7",
+        "personid":"7",
+        "institutionid":"2",
+        "projectid":"2",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"8",
+        "personid":"8",
+        "institutionid":"1",
+        "projectid":"3",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    },
+    {
+        "id":"9",
+        "personid":"1",
+        "institutionid":"2",
+        "projectid":"2",
+        "start":"01 January 2001",
+        "end":"31 December 2021",
+        "status":"on",
+        "comments":"Description of Work Relation"
+    }
+]

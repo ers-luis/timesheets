@@ -1,0 +1,38 @@
+[
+    {
+        "id":"1",
+        "institution_id":"1",
+        "name":"Alias 1",
+        "acronym":"A1"
+    },
+    {
+        "id":"2",
+        "institution_id":"2",
+        "name":"Alias 2",
+        "acronym":"A2"
+    },
+    {
+        "id":"3",
+        "institution_id":"3",
+        "name":"Alias 3",
+        "acronym":"A3"
+    },
+    {
+        "id":"4",
+        "institution_id":"1",
+        "name":"Alias 4",
+        "acronym":"A4"
+    },
+    {
+        "id":"5",
+        "institution_id":"4",
+        "name":"Alias 5",
+        "acronym":"A5"
+    },
+    {
+        "id":"6",
+        "institution_id":"5",
+        "name":"Alias 6",
+        "acronym":"A6"
+    }
+]

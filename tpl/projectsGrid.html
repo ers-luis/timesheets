@@ -1,0 +1,23 @@
+<!--see http://angular-ui.github.com/ng-grid/#/api for more  -->
+
+<!-- Filtering via the header button appears to be broken.  Hide button for now... -->
+<!-- 
+<style>
+    .ngHeaderButton {
+        display: none;
+    }
+</style>
+ -->
+
+<div class="container" fade-in>
+ <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Projects</div>
+  <div class="panel-body">
+    <p>List of projects using the basic Angular Grid (ng-grid) with pagination, sorting, and filtering, using jquery theme...</p>
+  </div>
+  
+  <input ng-model="filterOptions.filterText" placeholder="[[enter filter text here]]" type="text">
+  <div class="gridStyle" ng-grid="gridOptions"></div>
+ </div>
+</div>

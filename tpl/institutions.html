@@ -1,0 +1,28 @@
+
+<div class="container" fade-in>
+ <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Institutions</div>
+  <div class="panel-body">
+    <p>List of institutions</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Acronym</th>
+      <th>PIC</th>
+      <th>Description</th>
+    </tr>
+    <tr ng-repeat="i in institutions">
+      <td>{{i.id}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.acronym}}</td>
+      <td>{{i.pic}}</td>
+      <td>{{i.description}}</td>
+    </tr>
+  </table>
+ </div>
+</div>

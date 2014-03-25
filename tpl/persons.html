@@ -1,0 +1,36 @@
+
+<div class="container" fade-in>
+ <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Persons</div>
+  <div class="panel-body">
+    <p>List of persons</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surnames</th>
+      <th>email</th>
+      <th>role</th>
+      <th>login</th>
+      <th>password</th>
+      <th>picture</th>
+      <th>Description</th>
+    </tr>
+    <tr ng-repeat="p in persons">
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.surnames}}</td>
+      <td>{{p.email}}</td>
+      <td>{{p.role}}</td>
+      <td>{{p.login}}</td>
+      <td>{{p.password}}</td>
+      <td><img width="21" height="24" src="userpics/{{ p.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></td>
+      <td>{{p.description}}</td>
+    </tr>
+  </table>
+ </div>
+</div>

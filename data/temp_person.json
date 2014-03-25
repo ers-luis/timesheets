@@ -1,0 +1,90 @@
+[
+    {
+        "id":"1",
+        "name":"User 1",
+        "surnames":"Some of the Surnames go Here",
+        "email":"user1@email.com",
+        "role":"Admin",
+        "login":"user1",
+        "password":"0000",
+        "picture":"user1",
+        "description":"Description of User 1."
+    },
+    {
+        "id":"2",
+        "name":"User 2",
+        "surnames":"of the Surnames",
+        "email":"user2@email.com",
+        "role":"PM",
+        "login":"user2",
+        "password":"0000",
+        "picture":"user2",
+        "description":"Description of User 2."
+    },
+    {
+        "id":"3",
+        "name":"User 3",
+        "surnames":"Here",
+        "email":"user3@email.com",
+        "role":"PM",
+        "login":"user3",
+        "password":"0000",
+        "picture":"user3",
+        "description":"Description of User 3."
+    },
+    {
+        "id":"4",
+        "name":"User 4",
+        "surnames":"Some of the Surnames",
+        "email":"user4@email.com",
+        "role":"PI",
+        "login":"user4",
+        "password":"0000",
+        "picture":"user4",
+        "description":"Description of User 4."
+    },
+    {
+        "id":"5",
+        "name":"User 5",
+        "surnames":"go Here",
+        "email":"user5@email.com",
+        "role":"PI",
+        "login":"user5",
+        "password":"0000",
+        "picture":"user5",
+        "description":"Description of User 5."
+    },
+    {
+        "id":"6",
+        "name":"User 6",
+        "surnames":"Some",
+        "email":"user6@email.com",
+        "role":"Researcher",
+        "login":"user6",
+        "password":"0000",
+        "picture":"user6",
+        "description":"Description of User 6."
+    },
+    {
+        "id":"7",
+        "name":"User 7",
+        "surnames":"Surnames go Here",
+        "email":"user7@email.com",
+        "role":"Researcher",
+        "login":"user7",
+        "password":"0000",
+        "picture":"user7",
+        "description":"Description of User 7."
+    },
+    {
+        "id":"8",
+        "name":"User 8",
+        "surnames":"Surnames Here",
+        "email":"user8@email.com",
+        "role":"Researcher",
+        "login":"user8",
+        "password":"0000",
+        "picture":"user8",
+        "description":"Description of User 8."
+    }
+]

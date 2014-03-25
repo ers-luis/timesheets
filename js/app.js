@@ -47,6 +47,54 @@ myTime.config(['$routeProvider', '$locationProvider', '$httpProvider',
     $routeProvider.when('/projects', {
         templateUrl:'tpl/projects.html'
     });
+    // ProjectsGrid
+    $routeProvider.when('/projectsGrid', {
+        templateUrl:'tpl/projectsGrid.html',
+        controller:'ProjectCtrl'
+    });
+    // Institutions
+    $routeProvider.when('/institutions', {
+        templateUrl:'tpl/institutions.html',
+        controller:'InstitutionCtrl'
+    });
+    // persons
+    $routeProvider.when('/persons', {
+        templateUrl:'tpl/persons.html',
+        controller:'PersonCtrl'
+    });
+    // workrelations
+    $routeProvider.when('/workrelations', {
+        templateUrl:'tpl/workrelations.html'
+    });
+    // bankaccounts
+    $routeProvider.when('/bankaccounts', {
+        templateUrl:'tpl/bankaccounts.html'
+    });
+    // institutionaliases
+    $routeProvider.when('/institutionaliases', {
+        templateUrl:'tpl/institutionaliases.html'
+    });
+    // wps
+    $routeProvider.when('/wps', {
+        templateUrl:'tpl/wps.html'
+    });
+    // EU activities
+    $routeProvider.when('/euactivities', {
+        templateUrl:'tpl/euactivities.html'
+    });
+    // institutionactivities
+    $routeProvider.when('/institutionactivities', {
+        templateUrl:'tpl/institutionactivities.html'
+    });
+    // timerecords
+    $routeProvider.when('/timerecords', {
+        templateUrl:'tpl/timerecords.html'
+    });
+    // clocks
+    $routeProvider.when('/clocks', {
+        templateUrl:'tpl/clocks.html'
+    });
+    
     // MY PANEL
     $routeProvider.when('/mypanel/:roleID', {
         templateUrl:'tpl/myPanel.html',
@@ -76,25 +124,109 @@ myTime.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTSe
             $rootScope.constants = data[0];
         }
     );
+	console.log("async load constants");
 
-    // async load constants
+    // async load FAQ
     $rootScope.faq = [];
     $rootScope.restService.get('data/faq.json', function (data) {
             $rootScope.faq = data;
+			console.log("async load FAQ");
         }
     );
 
     // async load temp user data
-    $rootScope.userData = [];
-    $rootScope.restService.get('data/temp_id.json', function (data) {
-            $rootScope.userData = data[0];
-        }
-    );
+//     $rootScope.userData = [];
+//     $rootScope.restService.get('data/temp_id.json', function (data) {
+//             $rootScope.userData = data[0];
+//         }
+//     );
+// 	console.log("async load userData");
 
     // async load temp projects data
     $rootScope.projects = [];
     $rootScope.restService.get('data/temp_project.json', function (data) {
             $rootScope.projects = data;
+			console.log("async load projects");
+        }
+    );
+
+    // async load temp institutions data
+//     $rootScope.institutions = [];
+//     $rootScope.restService.get('data/temp_institution.json', function (data) {
+//             $rootScope.institutions = data;
+// 				console.log("async load institutions");
+//         }
+//     );
+
+    // async load temp Persons data
+//     $rootScope.persons = [];
+//     $rootScope.restService.get('data/temp_person.json', function (data) {
+//             $rootScope.persons = data;
+// 				console.log("async load persons");
+//         }
+//     );
+
+    // async load temp Work Relations data
+    $rootScope.workrelations = [];
+    $rootScope.restService.get('data/temp_workrelation.json', function (data) {
+            $rootScope.workrelations = data;
+			console.log("async load workrelations");
+        }
+    );
+
+    // async load temp Bank Accounts data
+    $rootScope.bankaccounts = [];
+    $rootScope.restService.get('data/temp_bankaccount.json', function (data) {
+            $rootScope.bankaccounts = data;
+			console.log("async load bankaccounts");
+        }
+    );
+
+    // async load temp Institution Aliases data
+    $rootScope.institutionaliases = [];
+    $rootScope.restService.get('data/temp_institutionalias.json', function (data) {
+            $rootScope.institutionaliases = data;
+			console.log("async load inst aliases");
+        }
+    );
+
+    // async load temp Work Packages data
+    $rootScope.wps = [];
+    $rootScope.restService.get('data/temp_wp.json', function (data) {
+            $rootScope.wps = data;
+			console.log("async load wps");
+        }
+    );
+
+    // async load temp eu activities data
+    $rootScope.euactivities = [];
+    $rootScope.restService.get('data/temp_euactivity.json', function (data) {
+            $rootScope.euactivities = data;
+			console.log("async load euactivity");
+        }
+    );
+
+    // async load temp institution activities data
+    $rootScope.institutionactivities = [];
+    $rootScope.restService.get('data/temp_institutionactivity.json', function (data) {
+            $rootScope.institutionactivities = data;
+			console.log("async load inst activity");
+        }
+    );
+
+    // async load temp timerecords data
+    $rootScope.timerecords = [];
+    $rootScope.restService.get('data/temp_timerecord.json', function (data) {
+            $rootScope.timerecords = data;
+			console.log("async load timerecords");
+        }
+    );
+
+    // async load temp clocks data
+    $rootScope.clocks = [];
+    $rootScope.restService.get('data/temp_clock.json', function (data) {
+            $rootScope.clocks = data;
+			console.log("async load clock");
         }
     );
 
@@ -131,7 +263,6 @@ myTime.run(function ($rootScope, $location, $http, $timeout, AuthService, RESTSe
         }
 
     }, true);
-    
 
 });
 

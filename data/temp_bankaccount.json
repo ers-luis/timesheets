@@ -1,0 +1,50 @@
+[
+    {
+        "id":"1",
+        "institutionid":"1",
+        "accountnumber":"000 00 000001",
+        "IBAN":"IBXX XXXX XXXX XXXX XXXX",
+        "BIC_SWIFT":"BCSWIFT",
+        "description":"Description of A BANK ACCOUNT."
+    }
+    {
+        "id":"2",
+        "institutionid":"2",
+        "accountnumber":"000 00 000002",
+        "IBAN":"IBXX XXXX XXXX XXXX XXX2",
+        "BIC_SWIFT":"BCSWFT2",
+        "description":"Description of A BANK ACCOUNT."
+    },
+    {
+        "id":"3",
+        "institutionid":"3",
+        "accountnumber":"000 00 000003",
+        "IBAN":"IBXX XXXX XXXX XXXX XXX3",
+        "BIC_SWIFT":"BCSWIFT",
+        "description":"Description of A BANK ACCOUNT."
+    },
+    {
+        "id":"4",
+        "institutionid":"4",
+        "accountnumber":"000 00 000004",
+        "IBAN":"IBXX XXXX XXXX XXXX XXX4",
+        "BIC_SWIFT":"BCSWIFT",
+        "description":"Description of A BANK ACCOUNT."
+    },
+    {
+        "id":"5",
+        "institutionid":"1",
+        "accountnumber":"000 00 000005",
+        "IBAN":"IBXX XXXX XXXX XXXX XXX5",
+        "BIC_SWIFT":"BCSWFT5",
+        "description":"Description of A BANK ACCOUNT."
+    },
+    {
+        "id":"6",
+        "institutionid":"5",
+        "accountnumber":"000 00 000006",
+        "IBAN":"IBXX XXXX XXXX XXXX XXX6",
+        "BIC_SWIFT":"BCSWIFT",
+        "description":"Description of A BANK ACCOUNT."
+    }
+]
