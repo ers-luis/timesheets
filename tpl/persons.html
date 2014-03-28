@@ -22,8 +22,8 @@
     </tr>
     <tr ng-repeat="p in persons">
       <td>{{p.id}}</td>
-      <td>{{p.name}}</td>
-      <td>{{p.surnames}}</td>
+      <td editable-text="p.name">{{p.name}}</td>
+      <td editable-text="p.surnames">{{p.surnames}}</td>
       <td>{{p.email}}</td>
       <td>{{p.role}}</td>
       <td>{{p.login}}</td>
