@@ -61,7 +61,7 @@ $databasename = 'timecontrol';
 $databasehost = 'localhost';
 $databaseport = '5432';
 $databaseuser = 'cronos';
-$databasepassword = '';
+$databasepassword = 'xxxxxx';
 
 // DATABASE CONNECTION
 $db = new PDO("pgsql:dbname=$databasename;host=$databasehost;port=$databaseport;", $databaseuser, $databasepassword);
