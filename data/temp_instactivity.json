@@ -1,0 +1,74 @@
+[
+    {
+        "id":"1",
+        "institutionid":"1",
+        "personid":"1",
+        "name":"Institution Activity 1",
+        "type":"Teaching",
+        "othername":"",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"2",
+        "institutionid":"1",
+        "personid":"1",
+        "name":"Institution Activity 2",
+        "type":"Vacations",
+        "othername":"",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"3",
+        "institutionid":"1",
+        "personid":"1",
+        "name":"Institution Activity 3",
+        "type":"Sick Leave",
+        "othername":"",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"4",
+        "institutionid":"1",
+        "personid":"1",
+        "name":"Institution Activity 4",
+        "type":"Special Leave",
+        "othername":"",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"5",
+        "institutionid":"1",
+        "personid":"1",
+        "name":"Institution Activity 5",
+        "type":"Other",
+        "othername":"Training",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"6",
+        "institutionid":"2",
+        "personid":"3",
+        "name":"Institution Activity 5",
+        "type":"Other",
+        "othername":"Training",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"7",
+        "institutionid":"2",
+        "personid":"2",
+        "name":"Institution Activity 5",
+        "type":"Other",
+        "othername":"Training",
+        "description":"Description of Institution Activity."
+    },
+    {
+        "id":"8",
+        "institutionid":"2",
+        "personid":"1",
+        "name":"Institution Activity 5",
+        "type":"Vacations",
+        "othername":"",
+        "description":"Description of Institution Activity."
+    }
+]
