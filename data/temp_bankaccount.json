@@ -6,7 +6,7 @@
         "IBAN":"IBXX XXXX XXXX XXXX XXXX",
         "BIC_SWIFT":"BCSWIFT",
         "description":"Description of A BANK ACCOUNT."
-    }
+    },
     {
         "id":"2",
         "institutionid":"2",

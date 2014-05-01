@@ -1,7 +1,7 @@
 [
     {
         "id":"1",
-        "personid":"1",
+        "personid":1,
         "institutionid":"1",
         "projectid":"1",
         "start":"01 January 2011",
@@ -11,7 +11,7 @@
     },
     {
         "id":"2",
-        "personid":"2",
+        "personid":2,
         "institutionid":"2",
         "projectid":"2",
         "start":"01 January 2003",
@@ -21,7 +21,7 @@
     },
     {
         "id":"3",
-        "personid":"3",
+        "personid":3,
         "institutionid":"1",
         "projectid":"2",
         "start":"01 January 2001",
@@ -31,7 +31,7 @@
     },
     {
         "id":"4",
-        "personid":"4",
+        "personid":4,
         "institutionid":"3",
         "projectid":"1",
         "start":"01 January 2001",
@@ -41,7 +41,7 @@
     },
     {
         "id":"5",
-        "personid":"5",
+        "personid":5,
         "institutionid":"4",
         "projectid":"1",
         "start":"01 January 2001",
@@ -51,7 +51,7 @@
     },
     {
         "id":"6",
-        "personid":"6",
+        "personid":6,
         "institutionid":"5",
         "projectid":"4",
         "start":"01 January 2001",
@@ -61,7 +61,7 @@
     },
     {
         "id":"7",
-        "personid":"7",
+        "personid":7,
         "institutionid":"2",
         "projectid":"2",
         "start":"01 January 2001",
@@ -71,7 +71,7 @@
     },
     {
         "id":"8",
-        "personid":"8",
+        "personid":8,
         "institutionid":"1",
         "projectid":"3",
         "start":"01 January 2001",
@@ -81,7 +81,7 @@
     },
     {
         "id":"9",
-        "personid":"1",
+        "personid":1,
         "institutionid":"2",
         "projectid":"2",
         "start":"01 January 2001",
