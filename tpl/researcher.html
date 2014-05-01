@@ -1,0 +1,168 @@
+
+<div class="container" fade-in>
+  <div class="panel-heading">Researcher - {{person.name}}</div>
+  <div class="panel-body">
+  </div>
+
+  <accordion close-others="true">
+    <accordion-group is-open="openpers">
+      <accordion-heading>
+        Details of {{person.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openpers, 'glyphicon-chevron-right': !openpers}"></i>
+      </accordion-heading>
+ 	  <div class="row">
+	    <div class="col-md-3">ID: <a>{{person.id}}</a></div>
+	    <div class="col-md-3">Name: <a editable-text="person.name">{{person.name}}</a></div>
+	    <div class="col-md-3">Surnames: <a editable-text="person.name">{{person.surnames}}</a></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-md-3">email: <a editable-text="person.email">{{person.email}}</a></div>
+	    <div class="col-md-3">login: <a editable-text="person.login">{{person.login}}</a></div>
+	    <div class="col-md-3">password: <a editable-text="person.password">{{person.password}}</a></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-md-3">role: <a editable-text="person.role">{{person.role}}</a></div>
+	    <div class="col-md-3">picture: <img width="70" height="80" src="userpics/{{ person.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></div>
+	    <div class="col-md-3">Description: <a editable-text="person.description">{{person.description}}</a></div>
+	  </div>
+
+	  <!-- Table of Work Relations -->
+	  <h4>Work Relations of {{person.name}}</h4>
+	  <table class="table">
+		<tr>
+		  <th>ID</th>
+		  <th>Person ID / Name</th>
+		  <th>Institution ID / Name</th>
+		  <th>Project ID / Name</th>
+		  <th>Start</th>
+		  <th>End</th>
+		  <th>Status</th>
+		  <th>Description</th>
+		</tr>
+		<tr ng-repeat="wr in person.workrelations" ui-sref="persons.person.wr({personID: wr.personid, wrID: wr.id})">
+<!-- 		  <td><a ui-sref="persons.person.wr({personID: wr.personid, wrID: wr.id})">{{wr.id}}</a></td> -->
+		  <td><a>{{wr.id}}</a></td>
+		  <td><a>{{wr.personid}} / {{person.name}}</a></td>
+		  <td><a>{{wr.institution.id}} / {{wr.institution.name}}</a></td>
+		  <td><a>{{wr.project.id}} / {{wr.project.name}}</a></td>
+		  <td><a>{{wr.start}}</a></td>
+		  <td><a>{{wr.end}}</a></td>
+		  <td><a>{{wr.status}}</a></td>
+		  <td><a>{{wr.description}}</a></td>
+		</tr>
+	  </table>
+    </accordion-group>
+    
+    <accordion-group is-open="openeu">
+      <accordion-heading>
+        EU Activities<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openeu, 'glyphicon-chevron-right': !openeu}"></i>
+      </accordion-heading>
+      
+<!-- 
+      <div ng-repeat="wr in person.workrelations">
+      	<div ng-repeat="wp in wr.project.workpackages">
+	   <table class="table table-stripped table-condensed table-hover table-responsive">
+		<tr>
+		  <th>Activity ID</th>
+		  <th>Institution</th>
+		  <th>Project</th>
+		  <th>WP</th>
+		  <th>Activity Name</th>
+		  <th>Type</th>
+		  <th>Type if other</th>
+		  <th>Description</th>
+		</tr>
+		<tr ng-repeat="a in wp.activities">
+		  <td><a>{{a.id}}</a></td>
+		  <td><a>{{wr.institution.name}}</a></td>
+		  <td><a>{{wr.project.name}}</a></td>
+		  <td><a>WP #{{wp.number}} - {{wp.name}}</a></td>
+		  <td><a>{{a.name}}</a></td>
+		  <td><a>{{a.type}}</a></td>
+		  <td><a>{{a.othername}}</a></td>
+		  <td><a>{{a.description}}</a></td>
+		</tr>
+       </table>
+      	</div>
+      </div>
+ -->
+
+ 		<table class="table table-stripped table-condensed table-hover table-responsive">
+ 			<tr>
+ 				<th>ID</th>
+ 				<th>Name</th>
+ 				<th>Type</th>
+ 				<th>Other</th>
+ 				<th>Institution</th>
+ 				<th>Project</th>
+ 				<th>WP</th>
+ 				<th>Description</th>
+ 			</tr>
+ 			<tr ng-repeat="a in person.activities.eu">
+ 				<td>{{a.id}}</td>
+ 				<td>{{a.name}}</td>
+ 				<td>{{a.type}}</td>
+ 				<td>{{a.othername}}</td>
+ 				<td>{{a.institutionname}}</td>
+ 				<td>{{a.projectname}}</td>
+ 				<td>{{a.wpname}}</td>
+ 				<td>{{a.description}}</td>
+ 			</tr>
+ 		</table>
+      
+    </accordion-group>
+  
+    <accordion-group is-open="openinst">
+      <accordion-heading>
+        Institution Activities <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openinst, 'glyphicon-chevron-right': !openinst}"></i>
+      </accordion-heading>
+	  
+<!-- 
+      <div ng-repeat="wr in person.workrelations">
+	   <table class="table table-stripped table-condensed table-hover table-responsive">
+		<tr>
+		  <th>Activity ID</th>
+		  <th>Institution</th>
+		  <th>Activity Name</th>
+		  <th>Type</th>
+		  <th>Type if other</th>
+		  <th>Description</th>
+		</tr>
+		<tr ng-repeat="a in wr.institution.activities">
+		  <td><a>{{a.id}}</a></td>
+		  <td><a>{{a.institutionname}}</a></td>
+		  <td><a>{{a.name}}</a></td>
+		  <td><a>{{a.type}}</a></td>
+		  <td><a>{{a.othername}}</a></td>
+		  <td><a>{{a.description}}</a></td>
+		</tr>
+      	</table>
+      </div>
+ -->
+
+ 		<table class="table table-stripped table-condensed table-hover table-responsive">
+ 			<tr>
+ 				<th>ID</th>
+ 				<th>Name</th>
+ 				<th>Type</th>
+ 				<th>Other</th>
+ 				<th>Institution</th>
+ 				<th>Description</th>
+ 			</tr>
+ 			<tr ng-repeat="a in person.activities.noneu">
+ 				<td>{{a.id}}</td>
+ 				<td>{{a.name}}</td>
+ 				<td>{{a.type}}</td>
+ 				<td>{{a.othername}}</td>
+ 				<td>{{a.institutionname}}</td>
+ 				<td>{{a.description}}</td>
+ 			</tr>
+ 		</table>
+	   
+    </accordion-group>
+   </accordion>
+
+
+</div>
+
+
+

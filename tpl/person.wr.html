@@ -1,0 +1,132 @@
+
+<div class="container" fade-in>
+ <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">WR -  {{workrelation.id}}</div>
+  <div class="panel-body">
+  
+   <div class="row">
+<!--   	WR Details -->
+    <div class="col-md-3">
+      <h4>Work Relation</h4>
+      <div>ID: <a>{{workrelation.id}}</a></div>
+      <div>Person ID: <a editable-text="workrelation.personid">{{workrelation.personid}}</a></div>
+      <div>Person Name: <a editable-text="workrelation.person.name">{{workrelation.person.name}}</a></div>
+      <div>Institution ID: <a editable-text="workrelation.institutionid">{{workrelation.institutionid}}</a></div>
+      <div>Institution Name: <a editable-text="workrelation.institution.name">{{workrelation.institution.name}}</a></div>
+      <div>Project ID: <a editable-text="workrelation.projectid">{{workrelation.projectid}}</a></div>
+      <div>Project Name: <a editable-text="workrelation.project.name">{{workrelation.project.name}}</a></div>
+      <div>Start Date: <a editable-text="workrelation.start">{{workrelation.start}}</a></div>
+      <div>End Date: <a editable-text="workrelation.end">{{workrelation.end}}</a></div>
+      <div>Status: <a editable-text="workrelation.status">{{workrelation.status}}</a></div>
+      <div>Description: <a editable-text="workrelation.description">{{workrelation.description}}</a></div>
+    </div>
+    
+<!--   	Person Details -->
+    <div class="col-md-3">
+      <h4>Person</h4>
+      <div>ID: <a>{{workrelation.person.id}}</a></div>
+      <div>Name: <a editable-text="workrelation.person.name">{{workrelation.person.name}}</a></div>
+      <div>Surnames: <a editable-text="workrelation.person.surnames">{{workrelation.person.surnames}}</a></div>
+      <div>email: <a editable-text="workrelation.person.email">{{workrelation.person.email}}</a></div>
+      <div>role: <a editable-text="workrelation.person.role">{{workrelation.person.role}}</a></div>
+      <div>login: <a editable-text="workrelation.person.login">{{workrelation.person.login}}</a></div>
+      <div>password: <a editable-text="workrelation.person.password">{{workrelation.person.password}}</a></div>
+      <div>picture: <img width="70" height="80" src="userpics/{{ workrelation.person.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></div>
+      <div>Description: <a editable-text="workrelation.person.description">{{workrelation.person.description}}</a></div>
+    </div>
+    
+<!--   	Project Details -->
+    <div class="col-md-3">
+      <h4>Project</h4>
+      <div>ID: <a>{{workrelation.project.id}}</a></div>
+      <div>Number: <a editable-text="workrelation.project.number">{{workrelation.project.number}}</a></div>
+      <div>Name: <a editable-text="workrelation.project.name">{{workrelation.project.name}}</a></div>
+      <div>Acronym: <a editable-text="workrelation.project.acronym">{{workrelation.project.acronym}}</a></div>
+      <div>Start Date: <a editable-text="workrelation.project.start">{{workrelation.project.start}}</a></div>
+      <div>End Date: <a editable-text="workrelation.project.end">{{workrelation.project.end}}</a></div>
+      <div>Status: <a editable-text="workrelation.project.status">{{workrelation.project.status}}</a></div>
+      <div>Description: <a editable-text="workrelation.project.description">{{workrelation.project.description}}</a></div>
+    </div>
+  
+<!--   	Institution Details -->
+    <div class="col-md-3">
+      <h4>Institution</h4>
+      <div>ID: <a>{{workrelation.institution.id}}</a></div>
+      <div>Name: <a editable-text="workrelation.institution.name">{{workrelation.institution.name}}</a></div>
+      <div>Acronym: <a editable-text="workrelation.institution.acronym">{{workrelation.institution.acronym}}</a></div>
+      <div>PIC: <a editable-text="workrelation.institution.pic">{{workrelation.institution.pic}}</a></div>
+      <div>Description: <a editable-text="workrelation.institution.description">{{workrelation.institution.description}}</a></div>
+    </div>
+   </div> <!-- END ROW --> 
+  </div> <!-- END PANEL BODY -->
+ </div> <!-- END PANEL -->
+ 
+
+ <div class="row">
+  <div class="col-md-6">
+
+  <accordion close-others="true">
+    <accordion-group ng-repeat="wp in workrelation.project.workpackages" is-open="isopen">
+      <accordion-heading>
+        Activities of Proj. {{workrelation.project.name}} - Work Package #{{wp.number}}: {{wp.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+      </accordion-heading>
+<!-- 
+      <div class="row">
+      	<div class="col-md-2">WP ID: {{wp.id}}</div>
+      	<div class="col-md-2">Project ID: {{wp.projectid}}</div>
+      	<div class="col-md-2">WP Number: {{wp.number}}</div>
+      	<div class="col-md-2">WP Name: {{wp.name}}</div>
+      	<div class="col-md-2">WP Description: {{wp.description}}</div>
+      </div>
+ -->
+	   <table class="table table-stripped table-condensed table-hover table-responsive">
+		<tr>
+		  <th>ID</th>
+		  <th>WP ID - Name</th>
+		  <th>Activity Name</th>
+		  <th>Type</th>
+		  <th>Type if other</th>
+		  <th>Description</th>
+		</tr>
+		<tr ng-repeat="ea in wp.euactivities">
+		  <td><a>{{ea.id}}</a></td>
+		  <td><a>{{ea.wpid}} - {{wp.name}}</a></td>
+		  <td><a>{{ea.name}}</a></td>
+		  <td><a>{{ea.type}}</a></td>
+		  <td><a>{{ea.othername}}</a></td>
+		  <td><a>{{ea.description}}</a></td>
+		</tr>
+	   </table>
+    </accordion-group>
+  
+    <accordion-group is-open="isopen">
+      <accordion-heading>
+        Activities of Institution: {{institution.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+      </accordion-heading>
+	  <table class="table table-stripped table-condensed table-hover table-responsive">
+		<tr>
+		  <th>ID</th>
+		  <th>Person ID - Name</th>
+		  <th>Institution ID - Name</th>
+		  <th>Activity Name</th>
+		  <th>Type</th>
+		  <th>Type if other</th>
+		  <th>Description</th>
+		</tr>
+		<tr ng-repeat="ia in instacts">
+		  <td><a>{{ia.id}}</a></td>
+		  <td><a>{{ia.personid}} - {{workrelation.person.name}}</a></td>
+		  <td><a>{{ia.institutionid}} - {{workrelation.institution.name}}</a></td>
+		  <td><a>{{ia.name}}</a></td>
+		  <td><a>{{ia.type}}</a></td>
+		  <td><a>{{ia.othername}}</a></td>
+		  <td><a>{{ia.description}}</a></td>
+		</tr>
+	  </table>
+    </accordion-group>
+   </accordion>
+
+   </div>
+ </div> <!-- END ROW -->
+</div> <!-- END CONTAINER -->

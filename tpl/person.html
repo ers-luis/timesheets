@@ -1,0 +1,80 @@
+
+<div class="container" fade-in>
+ <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Person Details -  {{person.name}}</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-3">ID: <a>{{person.id}}</a></div>
+      <div class="col-md-3">Name: <a editable-text="person.name">{{person.name}}</a></div>
+      <div class="col-md-3">Surnames: <a editable-text="person.name">{{person.surnames}}</a></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">email: <a editable-text="person.email">{{person.email}}</a></div>
+      <div class="col-md-3">login: <a editable-text="person.login">{{person.login}}</a></div>
+      <div class="col-md-3">password: <a editable-text="person.password">{{person.password}}</a></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">role: <a editable-text="person.role">{{person.role}}</a></div>
+      <div class="col-md-3">picture: <img width="70" height="80" src="userpics/{{ person.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></div>
+      <div class="col-md-3">Description: <a editable-text="person.description">{{person.description}}</a></div>
+    </div>
+  </div>
+  
+  <!-- Table of Work Relations -->
+  <h4>Work Relations of {{person.name}}</h4>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Person ID / Name</th>
+      <th>Institution ID / Name</th>
+      <th>Project ID / Name</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+    <tr ng-repeat="wr in person.workrelations">
+      <td><a ui-sref="persons.person.wr({personID: wr.personid, wrID: wr.id})">{{wr.id}}</a></td>
+      <td><a>{{wr.personid}} / {{person.name}}</a></td>
+      <td><a>{{wr.institution.id}} / {{wr.institution.name}}</a></td>
+      <td><a>{{wr.project.id}} / {{wr.project.name}}</a></td>
+      <td><a>{{wr.start}}</a></td>
+      <td><a>{{wr.end}}</a></td>
+      <td><a>{{wr.status}}</a></td>
+      <td><a>{{wr.description}}</a></td>
+      
+    </tr>
+  </table>
+
+  
+  
+  <!-- Table of Projects -->
+<!-- 
+  <h4>Projects of {{person.name}}</h4>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Acronym</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+    <tr ng-repeat="p in projects">
+      <td><a>{{p.id}}</a></td>
+      <td><a>{{p.number}}</a></td>
+      <td><a>{{p.name}}</a></td>
+      <td><a>{{p.acronym}}</a></td>
+      <td><a>{{p.start}}</a></td>
+      <td><a>{{p.end}}</a></td>
+      <td><a>{{p.status}}</a></td>
+      <td><a>{{p.description}}</a></td>
+    </tr>
+  </table>
+ -->
+  
+ </div>
+</div>
