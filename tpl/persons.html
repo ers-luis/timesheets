@@ -2,7 +2,7 @@
 <div class="container" fade-in>
  <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Persons</div>
+  <div class="panel-heading">Persons - {{title}}</div>
   <div class="panel-body">
     <p>List of persons</p>
   </div>
@@ -19,17 +19,19 @@
       <th>password</th>
       <th>picture</th>
       <th>Description</th>
+      <th> </th>
     </tr>
     <tr ng-repeat="p in persons">
-      <td>{{p.id}}</td>
-      <td editable-text="p.name">{{p.name}}</td>
-      <td editable-text="p.surnames">{{p.surnames}}</td>
+      <td ><a ui-sref="persons.person({personID: p.id})">{{p.id}}</a></td>
+      <td><a href="#" editable-text="p.name">{{p.name}}</a></td>
+      <td><a href="#" editable-text="p.surnames">{{p.surnames}}</a></td>
       <td>{{p.email}}</td>
       <td>{{p.role}}</td>
       <td>{{p.login}}</td>
       <td>{{p.password}}</td>
       <td><img width="21" height="24" src="userpics/{{ p.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></td>
       <td>{{p.description}}</td>
+      <td ><a ui-sref="researcher({personID: p.id})"><button type="button" class="btn" >Res. Panel</button></a></td>
     </tr>
   </table>
  </div>

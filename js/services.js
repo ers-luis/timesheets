@@ -11,12 +11,13 @@ myTime.factory('RESTService',
                         //console.log(data.json);
                     }).
                     error(function (data, status, headers, config) {
-                        console.log("failed to retrieve data");
+                        console.log("failed to retrieve data " + url);
                     });
             }
         };
     }
 );
+
 
 
 // simple auth service that can use a lot of work... 
@@ -58,86 +59,306 @@ myTime.factory('AuthService',
     }
 );
 
+myTime.service('InstitutionService', ['$http', function($http) {
+	var institutions = [];
+	var promise = $http({method:'GET', url:'data/temp_institution.json'}).
+                    success(function (data, status, headers, config) {
+                        institutions = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(institution) {
+	
+	}
+	
+	this.get = function(id) {
+		return _.find(institutions, function(p){ return p.id == id; });
+	}
+	
+	this.delete = function(id) {
+	
+	}
+	
+	this.list = function() {
+		return institutions;
+	}
+
+}]);
+
+myTime.service('ProjectService', ['$http', function($http) {
+	var projects = [];
+// 	var promise = $http({method:'GET', url:'data/temp_project.json'}).
+	var promise = $http({method:'GET', url:'http://localhost:8080/timesheets/api/index.php/project'}).
+                    success(function (data, status, headers, config) {
+                        projects = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(project) {
+	
+	}
+	
+	this.get = function(id) {
+		return _.find(projects, function(p){ return p.id == id; });
+	}
+	
+	this.delete = function(id) {
+	
+	}
+	
+	this.list = function() {
+		return projects;
+	}
+
+}]);
+
+myTime.service('InstitutionActivityService', ['$http', function($http) {
+	var ias = [];
+	var promise = $http({method:'GET', url:'data/temp_instactivity.json'}).
+                    success(function (data, status, headers, config) {
+                        ias = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(ia) {
+	
+	}
+	
+	this.get = function(id) {
+		return _.find(ias, function(d){ return d.id == id; });
+	}
+	
+	this.getByInstPers = function(id1, id2) {
+		return _.filter(ias, function(d){ 
+			return d.institutionid == id1 && d.personid == id2; 
+		});
+	}
+	
+	this.delete = function(id) {
+	
+	}
+	
+	this.list = function() {
+		return ias;
+	}
+
+}]);
+
+myTime.service('WorkRelationService', ['$http', function($http) {
+	var wrs = [];
+// 	var promise = $http({method:'GET', url:'data/temp_workrelation.json'}).
+	var promise = $http({method:'GET', url:'http://localhost:8080/timesheets/api/index.php/wrs'}).
+                    success(function (data, status, headers, config) {
+                        wrs = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(wr) {
+	
+	}
+	
+	this.get = function(id) {
+		return _.find(wrs, function(p){ return p.id == id; });
+	}
+	
+	this.getByPers = function(id) {
+		return _.filter(wrs, function(d){ 
+			return d.personid == id; 
+		});
+	}
+	
+	this.delete = function(id) {
+	
+	}
+	
+	this.list = function() {
+		return wrs;
+	}
+
+}]);
+
+myTime.service('PersonService', ['$http', function($http) {
+	var persons = [];
+	var person = {};
+// 	var promise = $http({method:'GET', url:'data/temp_person.json'}).
+	var promise = $http({method:'GET', url:'http://localhost:8080/timesheets/api/index.php/person'}).
+                    success(function (data, status, headers, config) {
+                        persons = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(person) {
+	
+	}
+	
+	this.get = function(id) {
+		return _.find(persons, function(d){ return d.id == id; });
+	}
+	
+	this.delete = function(id) {
+		// DELETE
+	}
+	
+	this.list = function() {
+		return persons;
+	}
+
+}]);
+
+myTime.service('WorkPackageService', ['$http', function($http) {
+	var wps = [];
+	var promise = $http({method:'GET', url:'data/temp_wp.json'}).
+                    success(function (data, status, headers, config) {
+                        wps = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(wp) {
+	
+	}
+	
+	this.get = function(id) {
+		return _.find(wps, function(d){ return d.id == id; });
+	}
+	
+	this.getByProj = function(id) {
+		return _.filter(wps, function(d){ return d.projectid == id; });
+	}
+	
+	this.delete = function(id) {
+		// DELETE
+	}
+	
+	this.list = function() {
+		return wps;
+	}
+
+}]);
+
+myTime.service('ActivityEUService', ['$http', function($http) {
+	var aeus = [];
+	var promise = $http({method:'GET', url:'data/temp_euactivity.json'}).
+                    success(function (data, status, headers, config) {
+                        aeus = data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+	
+	this.promise = promise;
+	
+	this.save = function(aeu) {
+		//Save
+	}
+	
+	this.get = function(id) {
+		return _.find(aeus, function(d){ return d.id == id; });
+	}
+	
+	this.getByWP = function(id) {
+		return _.filter(aeus, function(d){ return d.wpid == id; });
+	}
+	
+	this.delete = function(id) {
+		// DELETE
+	}
+	
+	this.list = function() {
+		return aeus;
+	}
+
+}]);
 
 
-myTime.factory('Utils', ['$rootScope', function ($rootScope) {
+// 		UTILS
+myTime.factory('Utils', ['$rootScope', '$http', function ($rootScope, $http) {
+	
+	var Utils = {};
+	Utils.projects = [];
+	Utils.persons = [];
+	Utils.workrelations = [];
+	Utils.institutions = [];
+	Utils.getData = function(q) {
+		$http({method:'GET', url:'data/temp_project.json'}).
+			success(function (data, status, headers, config) {
+				Utils.projects = data;
+				//console.log(data.json);
+				q.resolve();
+			}).
+			error(function (data, status, headers, config) {
+				console.log("failed to retrieve data");
+			});
+		$http({method:'GET', url:'data/temp_person.json'}).
+			success(function (data, status, headers, config) {
+				Utils.persons = data;
+				//console.log(data.json);
+				q.resolve();
+			}).
+			error(function (data, status, headers, config) {
+				console.log("failed to retrieve data");
+			});
+		$http({method:'GET', url:'data/temp_workrelation.json'}).
+			success(function (data, status, headers, config) {
+				Utils.workrelations = data;
+				//console.log(data.json);
+				q.resolve();
+			}).
+			error(function (data, status, headers, config) {
+				console.log("failed to retrieve data");
+			});
+		$http({method:'GET', url:'data/temp_institution.json'}).
+			success(function (data, status, headers, config) {
+				Utils.institutions = data;
+				//console.log(data.json);
+				q.resolve();
+			}).
+			error(function (data, status, headers, config) {
+				console.log("failed to retrieve data");
+			});
+	
+	}
+	
   return {
+  	setData: function() {
+  		getData();
+  	},
+  	instData: function() {
+  		return Utils.institutions;
+  	}
+  
+  };
    
-      
-      id: function(item) {
-        return item.id;
-      },
-      personid: function(item) {
-        return item.personid;
-      },
-      institutionid: function(item) {
-        return item.institutionid;
-      },
-      name: function(item) {
-        return item.name;
-      },
-      projects: [],
-      institutions: [],
-      institutionaliases: [],
-      persons: [],
-      workrelations: [],
-      bankaccounts: [],
-      
-//       nondeleted : function(item) {
-//         return !item.deleted();
-//       },
-//       beeldcontent: function(item) {
-//         return item.data('beeldcontent');
-//       },
-//       user: "",
-//       incident: "",
-//       onlineUsers: function (users,peers) {
-//         var onlineUsers = [];
-//         var activeUsers = _(cow.users()).filter(function(d){return !d.deleted();});
-//         var onlinePeers = _(cow.peers()).filter(function(d){return !d.deleted();});
-//         var peersByUser = _.groupBy(onlinePeers, function(d){ return d.data('userid');});
-//         _.each(activeUsers, function(d){
-//             var user = {};
-//             user.name = d.id();
-//             user.timestamp = 0;
-//             var peers = peersByUser[d.id()];
-//             user.online = false;
-//             user.inProject = false;
-//             if (peers){
-//                 user.online = true;
-//                 var peersProjects = _.map(peers,function(d){return d.data('activeproject');});
-//                 if (cow.project()){
-//                     user.inProject = _.contains(peersProjects,cow.project().id());
-//                 }
-//             }
-//             onlineUsers.push(user);
-//             //console.log(d.id(),user);
-//         });
-//         return onlineUsers;
-//       },            
-//       project: {},
-//       projectlist: [],
-//       itemlist: [],
-//       userlist: [],
-//       peerlist: [],
-      users: []// ,
-//       beeldcontentDiff: function(item) {
-//         if(!item) {
-//             return '';
-//         }
-//         var deltas = item.deltas();
-//         var oldValue = '';
-//         for (var i =  deltas.length - 2; i >= 0; i--)
-//         {
-//           if (deltas[i].data.beeldcontent !== undefined)
-//           {
-//             oldValue = deltas[i].data.beeldcontent;
-//             break;
-//           }
-//         }
-//         return TextDifference(oldValue, item.data('beeldcontent'));
-//       }
-    }; 
 
 }]);
 
