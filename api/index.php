@@ -132,7 +132,35 @@ $app->get('/project', function () use ($db, $app, $tablename_project) {
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-})->name('getProjects');
+});
+// })->name('getProjects');
+
+// create new project
+$app->post('/project', function () use ($db, $app, $tablename_project) {
+	$result = json_decode($app->request->getBody());
+	// nextval("public.time_project_id_seq")
+	$sql = 'INSERT INTO '.$tablename_project.' (id, pnumber, pname, acronym, status, startdate, enddate, description) VALUES (:number, :name, :acronym, :status, :start, :end, :description)';
+	try {
+// 		$db = getConnection();
+		$stmt = $db->prepare($sql);
+// 		$stmt->bindParam("number", $result->number);
+		$stmt->bindParam("number", $app->request->post('number'));
+		$stmt->bindParam("name", $result->name);
+		$stmt->bindParam("acronym", $result->acronym);
+		$stmt->bindParam("status", $result->status);
+		$stmt->bindParam("start", $result->start);
+		$stmt->bindParam("end", $result->end);
+		$stmt->bindParam("description", $result->description);
+		$stmt->execute();
+// 		$result->id = $db->lastInsertId();
+		$db = null;
+		echo json_encode($result); 
+	} catch(PDOException $e) {
+		error_log($e->getMessage(), 3, '/var/tmp/php.log');
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+});
+// })->name('createProject');
 
 // get project by ID
 $app->get('/project/:id', function ($id) use ($db, $app, $tablename_project) {
@@ -152,40 +180,6 @@ $app->get('/project/:id', function ($id) use ($db, $app, $tablename_project) {
 	}
 });
 // })->name('getProject');
-
-// create new project
-$app->post('/project', function () use ($db, $app, $tablename_project) {
-// 	$request = Slim::getInstance()->request();
-// 	$result = json_decode($request->getBody());
-	$result = json_decode($app->request->getBody());
-	$sql = 'INSERT INTO '.$tablename_project.' (id, pnumber, pname, acronym, status, startdate, enddate, description) VALUES (nextval("public.time_project_id_seq"), :number, :name, :acronym, :status, :start, :end, :description)';
-	try {
-// 		$db = getConnection();
-		$stmt = $db->prepare($sql);
-// 		$stmt->bindParam("number", $result->number);
-// 		$stmt->bindParam("name", $result->name);
-// 		$stmt->bindParam("acronym", $result->acronym);
-// 		$stmt->bindParam("status", $result->status);
-// 		$stmt->bindParam("start", $result->start);
-// 		$stmt->bindParam("end", $result->end);
-// 		$stmt->bindParam("description", $result->description);
-		$stmt->bindParam("number", $app->request->post('number'));
-		$stmt->bindParam("name", $result->name);
-		$stmt->bindParam("acronym", $result->acronym);
-		$stmt->bindParam("status", $result->status);
-		$stmt->bindParam("start", $result->start);
-		$stmt->bindParam("end", $result->end);
-		$stmt->bindParam("description", $result->description);
-		$stmt->execute();
-		$result->id = $db->lastInsertId();
-		$db = null;
-		echo json_encode($result); 
-	} catch(PDOException $e) {
-		error_log($e->getMessage(), 3, '/var/tmp/php.log');
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-});
-// })->name('createProject');
 
 // update project by id
 $app->put('/project/:id', function ($id) use ($db, $app) {

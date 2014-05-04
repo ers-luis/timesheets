@@ -178,7 +178,16 @@ myTime.service('WorkRelationService', ['$http', function($http) {
 	}
 	
 	this.get = function(id) {
-		return _.find(wrs, function(p){ return p.id == id; });
+		p = $http({method:'GET', url:'http://localhost:8080/timesheets/api/index.php/wrs/'+$id}).
+                    success(function (data, status, headers, config) {
+                        return data;
+                        //console.log(data.json);
+                    }).
+                    error(function (data, status, headers, config) {
+                        console.log("failed to retrieve data");
+                    });
+        this.p = p;
+// 		return _.find(wrs, function(p){ return p.id == id; });
 	}
 	
 	this.getByPers = function(id) {

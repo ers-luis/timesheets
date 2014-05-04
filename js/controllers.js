@@ -227,6 +227,7 @@ myTime.controller('PersonCtrl', ['$scope', '$routeParams', '$stateParams', '$htt
 			$scope.person.workrelations = $scope.wrService.getByPers($scope.person.id);
 
 			_.each($scope.person.workrelations, function(wr){
+				console.log("wr: " + wr.id);
 				wr.project = {};
 				$scope.restService.get('http://localhost:8080/timesheets/api/index.php/project/'+wr.projectid, function (data) {
             		wr.project =  data;
