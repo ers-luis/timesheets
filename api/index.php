@@ -57,11 +57,12 @@ $response['X-Powered-By'] = 'timeAPI';
 $response->status(200);
 
 // DATABASE PARAMS
-$databasename = 'timecontrol';
-$databasehost = 'localhost';
-$databaseport = '5432';
-$databaseuser = 'cronos';
-$databasepassword = 'xxxxxx';
+require("dbparams.php");
+// $databasename = 'DB_NAME';
+// $databasehost = 'localhost';
+// $databaseport = '5432';
+// $databaseuser = 'DB_USER';
+// $databasepassword = 'DB_PASSWORD';
 
 // DATABASE CONNECTION
 $db = new PDO("pgsql:dbname=$databasename;host=$databasehost;port=$databaseport;", $databaseuser, $databasepassword);
