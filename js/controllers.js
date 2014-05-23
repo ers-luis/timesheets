@@ -112,7 +112,7 @@ myTime.controller('ProjectCtrl', ['$scope', '$routeParams', '$http', function ($
 
     // async load temp projects data
     $scope.projects = [];
-    $scope.restService.get('data/temp_project.json', function (data) {
+    $scope.restService.get('http://localhost:8080/timesheets/api/index.php/project', function (data) {
             $scope.projects = data;
 			console.log("async load projects");
         }
