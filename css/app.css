@@ -4,6 +4,7 @@
    navbar is resized horizonally when vertical scroll appears */
 html {
     overflow-y: scroll;
+/*     overflow-x: scroll; */
 }
 
 /* anchor tags should use pointer like buttons */

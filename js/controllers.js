@@ -272,6 +272,43 @@ myTime.controller('ResearcherCtrl', ['$scope', '$routeParams', '$stateParams', '
 
 	console.log("Load Researcher Controller for Person ID: " + $stateParams.personID);
 	
+	$scope.activityTypes =
+        [
+            { id: 0, name: "EU" },
+            { id: 1, name: "Inst" }
+        ];
+    $scope.activityEuTypes =
+        [
+            { id: 0, name: "RD" },
+            { id: 1, name: "CSA" },
+            { id: 2, name: "Demo" },
+            { id: 3, name: "Mgt" },
+            { id: 4, name: "Other" }
+        ];
+    $scope.activityInstTypes =
+        [
+            { id: 0, name: "Teaching" },
+            { id: 1, name: "Vacations" },
+            { id: 2, name: "Sick leave" },
+            { id: 3, name: "Special leave" },
+            { id: 4, name: "Other" }
+        ];
+    $scope.projectStatuses =
+        [
+            { id: 0, name: "Active" },
+            { id: 1, name: "Revision" },
+            { id: 2, name: "Finished" }
+        ];
+    $scope.roleTypes =
+        [
+            { id: 0, name: "Researcher" },
+            { id: 1, name: "Project Manager" },
+            { id: 2, name: "Institution Manager" },
+            { id: 3, name: "Administrator" }
+        ];
+    if ($scope.date != undefined) {
+    	$scope.date = new Date();
+    }
 
 	
 	// Get Person
@@ -281,6 +318,8 @@ myTime.controller('ResearcherCtrl', ['$scope', '$routeParams', '$stateParams', '
 	$scope.person.activities = {};
 	$scope.person.activities.eu = [];
 	$scope.person.activities.noneu = [];
+	$scope.person.timerecords = [];
+	$scope.person.myactivities = [];
 	$scope.person.workrelations = $scope.wrService.getByPers($scope.person.id);	// Get WRs
 	
 // 	$scope.restService.get('http://localhost:8080/timesheets/api/index.php/person/'+$stateParams.personID+'/wrs', function (data) {
@@ -334,8 +373,8 @@ myTime.controller('ResearcherCtrl', ['$scope', '$routeParams', '$stateParams', '
 	            
 //     });
 	
-	$scope.openinst = false;
-	$scope.openeu = false;
+	$scope.openinst = true;
+	$scope.openeu = true;
 	$scope.openpers = true;
 	
 	$scope.toggleInstPanel = function(){

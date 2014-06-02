@@ -2,9 +2,20 @@
 <div class="container" fade-in>
   <div class="panel-heading">Researcher - {{person.name}}</div>
   <div class="panel-body">
+  
+	    <div class="col-md-3">ID: <a>{{person.id}}</a></div>
+	    <div class="col-md-3">Name: <a editable-text="person.name">{{person.name}}</a></div>
+	    <div class="col-md-3">Surnames: <a editable-text="person.name">{{person.surnames}}</a></div>
+	    <div class="col-md-3">email: <a editable-text="person.email">{{person.email}}</a></div>
+	    <div class="col-md-3">login: <a editable-text="person.login">{{person.login}}</a></div>
+	    <div class="col-md-3">password: <a editable-text="person.password">{{person.password}}</a></div>
+	    <div class="col-md-3">role: <a editable-text="person.role">{{person.role}}</a></div>
+	    <div class="col-md-3">picture: <img width="70" height="80" src="userpics/{{ person.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></div>
+	    <div class="col-md-3">Description: <a editable-text="person.description">{{person.description}}</a></div>
+  
   </div>
 
-  <accordion close-others="true">
+  <accordion close-others="false">
     <accordion-group is-open="openpers">
       <accordion-heading>
         Details of {{person.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openpers, 'glyphicon-chevron-right': !openpers}"></i>
