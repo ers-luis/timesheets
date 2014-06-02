@@ -49,15 +49,15 @@ $app->configureMode('development', function () use ($app) {
 
 // DATA OUTPUT: JSON
 $app->contentType('application/json');
-// $app->response()->header("Content-Type", "application/json");
+$app->response()->header("Content-Type", "application/json");
 
 $response = $app->response();
 $response['Content-Type'] = 'application/json';
 $response['X-Powered-By'] = 'timeAPI';
-$response->status(200);
+// $response->status(200);
 
 // DATABASE PARAMS
-require("dbparams.php");
+require("dbparams.php"); // DB Params, Table names, etc
 // $databasename = 'DB_NAME';
 // $databasehost = 'localhost';
 // $databaseport = '5432';
@@ -67,20 +67,6 @@ require("dbparams.php");
 // DATABASE CONNECTION
 $db = new PDO("pgsql:dbname=$databasename;host=$databasehost;port=$databaseport;", $databaseuser, $databasepassword);
 
-// TABLE NAMES
-$tablename_project = "time_project";
-$tablename_institution = "time_institution";
-$tablename_person = "time_person";
-$tablename_workpackage = "time_work_package";
-$tablename_activity = "time_activity";
-$tablename_activityeu = "time_activity_eu";
-$tablename_activityinst = "time_activity_non_eu";
-$tablename_timerecord = "time_time_record";
-$tablename_bankaccount = "time_bank_account";
-$tablename_institutionalias = "time_institution_alias";
-$tablename_workrelation = "time_work_relation";
-$tablename_user = "time_users";
-$tablename_role = "time_roles";
 
 
 
@@ -94,20 +80,6 @@ $tablename_role = "time_roles";
 ///////////////////////////////////////////////////////////////
 
 
-// BULLSHIT
-/*
-$app->get('/projects/:algo', function ($algo) use ($db, $app) {
-		$resultid = $db->lastInsertId("time_project_id_seq");
-		echo json_encode($algo);
-});
-$app->get('/projectsid', function () use ($db, $app) {
-// 		$resultid = $db->lastInsertId("time_project_id_seq");
-		$resultid = $db->lastInsertId('id');
-		echo "$resultid";
-});
-*/
-
-
 
 
 ///////////////////////////////////////
@@ -115,8 +87,6 @@ $app->get('/projectsid', function () use ($db, $app) {
 ////////////    PROJECT    ////////////
 ////////////               ////////////
 ///////////////////////////////////////
-
-
 
 // get all projects
 $app->get('/project', function () use ($db, $app, $tablename_project) {
@@ -136,42 +106,15 @@ $app->get('/project', function () use ($db, $app, $tablename_project) {
 });
 // })->name('getProjects');
 
-// create new project
-$app->post('/project', function () use ($db, $app, $tablename_project) {
-	$result = json_decode($app->request->getBody());
-	// nextval("public.time_project_id_seq")
-	$sql = 'INSERT INTO '.$tablename_project.' (id, pnumber, pname, acronym, status, startdate, enddate, description) VALUES (:number, :name, :acronym, :status, :start, :end, :description)';
-	try {
-// 		$db = getConnection();
-		$stmt = $db->prepare($sql);
-// 		$stmt->bindParam("number", $result->number);
-		$stmt->bindParam("number", $app->request->post('number'));
-		$stmt->bindParam("name", $result->name);
-		$stmt->bindParam("acronym", $result->acronym);
-		$stmt->bindParam("status", $result->status);
-		$stmt->bindParam("start", $result->start);
-		$stmt->bindParam("end", $result->end);
-		$stmt->bindParam("description", $result->description);
-		$stmt->execute();
-// 		$result->id = $db->lastInsertId();
-		$db = null;
-		echo json_encode($result); 
-	} catch(PDOException $e) {
-		error_log($e->getMessage(), 3, '/var/tmp/php.log');
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-});
-// })->name('createProject');
-
 // get project by ID
-$app->get('/project/:id', function ($id) use ($db, $app, $tablename_project) {
+$app->get('/project/:prid', function ($prid) use ($db, $app, $tablename_project) {
 	$sql = 'SELECT pr.id AS id, pr.pname AS name, pr.pnumber AS number, pr.acronym AS acronym, pr.startdate AS start, pr.enddate AS end, pr.status AS status, pr.description AS description '
 				.'FROM '.$tablename_project.' pr '
 				.'WHERE pr.id=:id';
 	try {
 // 		$db = getConnection();
 		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("id", $id);
+		$stmt->bindParam("id", $prid);
 		$stmt->execute();
 		$result = $stmt->fetchObject();  
 		$db = null;
@@ -182,22 +125,47 @@ $app->get('/project/:id', function ($id) use ($db, $app, $tablename_project) {
 });
 // })->name('getProject');
 
+// create new project
+$app->post('/project', function () use ($db, $app, $tablename_project) {
+	$result = $app->request->post();
+	$sql = 'INSERT INTO '.$tablename_project.' (pnumber, pname, acronym, status, startdate, enddate, description) VALUES (:number, :name, :acronym, :status, :start, :end, :description)';
+	try {
+// 		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("number", $app->request->post('number'));
+		$stmt->bindParam("name", $app->request->post('name'));
+		$stmt->bindParam("acronym", $app->request->post('acronym'));
+		$stmt->bindParam("status", $app->request->post('status'));
+		$stmt->bindParam("start",$app->request->post('start'));
+		$stmt->bindParam("end", $app->request->post('end'));
+		$stmt->bindParam("description", $app->request->post('description'));
+		$stmt->execute();
+		$db = null;
+		echo json_encode($result);
+	} catch(PDOException $e) {
+		error_log($e->getMessage(), 3, '/var/tmp/php.log');
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+});
+// })->name('createProject');
+
 // update project by id
-$app->put('/project/:id', function ($id) use ($db, $app) {
-	$request = Slim::getInstance()->request();
-	$body = $request->getBody();
-	$result = json_decode($body);
+$app->put('/project/:id', function ($id) use ($db, $app, $tablename_project) {
+// 	$request = Slim::getInstance()->request();
+// 	$body = $request->getBody();
+// 	$result = json_decode($body);
+	$result = $app->request->post();
 	$sql = 'UPDATE '.$tablename_project.' SET pnumber=:number, name=:name, acronym=:acronym, status=:status, startdate=:start, enddate=:end, description=:description WHERE id=:id';
 	try {
 // 		$db = getConnection();
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam("number", $result->number);
-		$stmt->bindParam("name", $result->name);
-		$stmt->bindParam("acronym", $result->acronym);
-		$stmt->bindParam("status", $result->status);
-		$stmt->bindParam("start", $result->start);
-		$stmt->bindParam("end", $result->end);
-		$stmt->bindParam("description", $result->description);
+		$stmt->bindParam("number", $app->request->post('number'));
+		$stmt->bindParam("name", $app->request->post('name'));
+		$stmt->bindParam("acronym", $app->request->post('acronym'));
+		$stmt->bindParam("status", $app->request->post('status'));
+		$stmt->bindParam("start", $app->request->post('start'));
+		$stmt->bindParam("end", $app->request->post('end'));
+		$stmt->bindParam("description", $app->request->post('description'));
 		$stmt->bindParam("id", $id);
 		$stmt->execute();
 		$db = null;
@@ -313,7 +281,27 @@ $app->get('/person/:id/wrs', function ($id) use ($db, $app, $tablename_person, $
 	}
 });
 			
-
+// insert new person
+$app->post('/person', function () use ($db, $app, $tablename_person) {
+	$result = $app->request->post();
+	$sql = 'INSERT INTO '.$tablename_person.' (pnumber, pname, acronym, status, startdate, enddate, description) VALUES (:number, :name, :acronym, :status, :start, :end, :description)';
+	try {
+// 		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("name", $app->request->post('name'));
+		$stmt->bindParam("surnames", $app->request->post('acronym'));
+		$stmt->bindParam("email", $app->request->post('status'));
+		$stmt->bindParam("role",$app->request->post('start'));
+		$stmt->bindParam("login", $app->request->post('end'));
+		$stmt->bindParam("password", $app->request->post('description'));
+		$stmt->execute();
+		$db = null;
+		echo json_encode($result);
+	} catch(PDOException $e) {
+		error_log($e->getMessage(), 3, '/var/tmp/php.log');
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+});
 
 
 
@@ -614,134 +602,12 @@ $app->get('/timerecord', function () use ($db, $app, $tablename_person, $tablena
 
 
 
-/*
-
-
-
-*/
-
-
 
 ///////////////////////////////////////
 ////////////               ////////////
 ////////////   RESEARCHER  ////////////
 ////////////               ////////////
 ///////////////////////////////////////
-
-/*
-// get project by ID
-$app->get('/res/:id', function ($id) use ($db, $app) {
-	$person = "SELECT id, pname AS name, pnumber AS number, acronym, startdate AS start, enddate AS end, status, description ".
-			"FROM time_project ".
-			"WHERE id=:id";
-	$projects = "SELECT id, pname AS name, pnumber AS number, acronym, startdate AS start, enddate AS end, status, description ".
-			"FROM time_project ".
-			"WHERE id=:id";
-	$sql = "SELECT id, pname AS name, pnumber AS number, acronym, startdate AS start, enddate AS end, status, description ".
-			"FROM time_project ".
-			"WHERE id=:id";
-			
-	$person = 'SELECT pe.id AS id, pe.firstname AS name, pe.lastname AS surnames, pe.email AS email, r.rolename AS role, u.login AS login, u.password AS password, u.description AS description ' // u.picture AS picture, 
-				.'FROM '.$tablename_person.' AS pe '
-				.'JOIN '.$tablename_user.' AS u ON pe.id = u.personid '
-				.'JOIN '.$tablename_role.' AS r ON u.roleid = r.id '
-				.'WHERE pe.id=:id';
-	$projects = 'SELECT pr.id AS id, pr.pname AS name, pr.pnumber AS number, pr.acronym AS acronym, pr.startdate AS start, pr.enddate AS end, pr.status AS status, pr.description AS description '
-				.'FROM '.$tablename_person.' AS pe '
-				.'JOIN '.$tablename_wrs.' AS wr ON pe.id = wr.personid '
-				.'JOIN '.$tablename_project.' AS pr ON pr.id = wr.projectid '
-				.'WHERE pe.id=:id';
-	$wps
-	$wrs
-	$insts
-	$intalias
-	$euacts
-	$instacts
-	$bankaccounts
-	$timerecords
-
-	try {
-// 		$db = getConnection();
-
-
-		$stmt = $db->prepare($person);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$resperson = $stmt->fetchObject();
-
-		$stmt = $db->prepare($projects);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$resprojects = $stmt->fetchObject();
-
-		$stmt = $db->prepare($wps);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$reswps = $stmt->fetchObject();
-
-		$stmt = $db->prepare($wrs);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$reswrs = $stmt->fetchObject();
-
-		$stmt = $db->prepare($insts);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$resinsts = $stmt->fetchObject();
-
-		$stmt = $db->prepare($instalias);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$resintalias = $stmt->fetchObject();
-
-		$stmt = $db->prepare($euacts);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$reseuacts = $stmt->fetchObject();
-
-		$stmt = $db->prepare($instacts);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$resinstacts = $stmt->fetchObject();
-
-		$stmt = $db->prepare($bankaccounts);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$resbankaccounts = $stmt->fetchObject();
-
-		$stmt = $db->prepare($timerecords);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$restimerecords = $stmt->fetchObject();
-
-
-		$db = null;
-
-
-// 		echo json_encode($result);
-		echo '{"person:"'.json_encode($resperson).','
-			 .'"projects:"'.json_encode($resprojects).','
-			 .'"wps:"'.json_encode($reswps).','
-			 .'"wrs:"'.json_encode($reswrs).','
-			 .'"institutions:"'.json_encode($resinsts).','
-			 .'"instaliases:"'.json_encode($resintalias).','
-			 .'"euacts:"'.json_encode($reseuacts).','
-			 .'"instacts:"'.json_encode($resinstacts).','
-			 .'"bankaccounts:"'.json_encode($resbankaccounts).','
-			 .'"timerecords:"'.json_encode($restimerecords)
-			 .'}';
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-});
-
-*/
-
-
-
-
-
-
 
 
 
