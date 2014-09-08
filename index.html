@@ -17,7 +17,11 @@
             padding-bottom: 75px;
             padding-left: 5px;
             padding-right: 5px;
+/* 
             overflow-x: scroll;
+            height: 100%,
+            overflow: auto;
+ */
         }
     </style>
     
@@ -25,7 +29,8 @@
 
     <link rel="stylesheet" href="css/vendor/bootstrap/bootstrap.min.css">
 
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+<!--     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"> -->
+    <link rel="stylesheet" href="css/vendor/bootstrap/bootstrap-glyphicons.css">
 
 <!--     <link rel="stylesheet" href="css/vendor/ng-grid/ng-grid.css"> -->
 
@@ -73,21 +78,21 @@
 	<![endif]-->
 
 	<!-- bootstrap navbar -->
-<!-- 	<div ng-include="'tpl/navbar-top.html'"></div> -->
-	<div ui-view="nav" autoscroll="false"></div>
+	<div ng-include="'tpl/navbar-top.html'"></div>
+<!-- 	<div ui-view="nav" autoscroll="false"></div> -->
 	<breadcrumbs item-display-name-resolver="myResolver(defaultResolver, state, isCurrent)"></breadcrumbs>
 
 	<!-- ng routes hook -->
 <!-- 	<div ui-view></div> -->
-	<div class="row">
-		<div class="sidebar col-md-2" ui-view="sidebar" autoscroll="false"></div>
-		<div class="main col-md-10" ui-view="main" scroll="true"></div>
+<!-- 	<div class="row"> -->
+<!-- 		<div class="sidebar col-md-2" ui-view="sidebar" autoscroll="false"></div> -->
+		<div class="main col-md-10" ui-view="main" scroll="true" autoscroll="false"></div>
 <!-- 		<div class="main col-md-10" ui-view="main" scroll="true" autoscroll="false"></div> -->
-	</div>
+<!-- 	</div> -->
 
 	<!-- footer -->
-<!-- 	<div ng-include="'tpl/navbar-bottom.html'"></div> -->
-	<div ui-view="footer" autoscroll="false"></div>
+	<div ng-include="'tpl/navbar-bottom.html'"></div>
+<!-- 	<div ui-view="footer" autoscroll="false"></div> -->
     
     
     
@@ -96,17 +101,24 @@
 
 
 
+<!-- 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>window.jQuery || document.write('<script src="//code.jquery.com/jquery-1.10.2.min.js"><\/script>')</script>
+ -->
+<script type="text/javascript" src="lib/jquery-2.1.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="lib/jquery-2.1.1.min.js"><\/script>')</script>
 
 <script type="text/javascript" src="lib/vendor/bootstrap/bootstrap.min.js"></script>
 
 <!-- TODO localize -->
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> -->
+<script type="text/javascript" src="lib/jquery-ui-1.11.1/jquery-ui.min.js"></script>
 
 <!-- <script src="//angular-ui.github.com/lib/bootstrap/docs/assets/js/bootstrap.min.js"></script> -->
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script> -->
+<!-- <script type="text/javascript" src="lib/angular-1.2.13.min.js"></script> -->
+<script type="text/javascript" src="lib/vendor/angular/angularjs.v1.0.4-51d501aa.js"></script>
 
 <script type="text/javascript" src="lib/vendor/angularui/angular-ui.js"></script>
 
@@ -121,11 +133,13 @@
 
 <!-- enables rendering of injected html -->
 <!-- TODO localize -->
-<script type="text/javascript" src="http://code.angularjs.org/1.0.1/angular-sanitize-1.0.1.js"></script>
+<!-- <script type="text/javascript" src="http://code.angularjs.org/1.0.1/angular-sanitize-1.0.1.js"></script> -->
+<script type="text/javascript" src="lib/angular-sanitize.js"></script>
 
 <!-- angular strap -->
-<!-- TODO move from cdn to local -->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<!-- TODO localize -->
+<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script> -->
+<script type="text/javascript" src="lib/underscore-1.5.2/underscore-min.js"></script>
 
 <!-- ACE Editor -->
  <script type="text/javascript" src="lib/vendor/ui-ace/ace.js"></script>

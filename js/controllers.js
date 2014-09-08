@@ -373,6 +373,7 @@ myTime.controller('ResearcherCtrl', ['$scope', '$routeParams', '$stateParams', '
 	            
 //     });
 	
+// 	Status (open/closed) of  the sliders
 	$scope.openinst = true;
 	$scope.openeu = true;
 	$scope.openpers = true;

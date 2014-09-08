@@ -37,7 +37,8 @@ myTime.factory('AuthService',
                 return initialState;
             },
             login:function (name, password) {
-                currentUser = name;
+            	currentUser = {};
+                currentUser.name = name;
                 authorized = true;
                 //console.log("Logged in as " + name);
                 initialState = false;
@@ -50,7 +51,7 @@ myTime.factory('AuthService',
                 return authorized;
             },
             currentUser:function () {
-                return currentUser;
+                return currentUser.name;
             },
             authorized:function () {
                 return authorized;
@@ -104,8 +105,27 @@ myTime.service('ProjectService', ['$http', function($http) {
 	
 	this.promise = promise;
 	
-	this.save = function(project) {
-	
+	this.save = function(p) {
+		project = {
+					id:p.id,
+					number:p.number,
+					name:p.name,
+					start:p.start,
+					end:p.end,
+					status:p.status,
+					description: p.description
+				  }
+		$http.post(
+			'http://localhost:8080/timesheets/api/index.php/project/'+project.id, 
+			project
+		).success(function(data, status) {
+				$scope.status = status;
+				$scope.data = data;
+				$scope.result = data; // Show result from server in our <pre></pre> element
+		}).error(function(data, status) {
+				$scope.data = data || "Request failed";
+				$scope.status = status;			
+		});
 	}
 	
 	this.get = function(id) {

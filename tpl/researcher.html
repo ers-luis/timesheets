@@ -1,6 +1,10 @@
-
 <div class="container" fade-in>
-  <div class="panel-heading">Researcher - {{person.name}}</div>
+<div class="row">
+<div class="sidebar col-md-2" autoscroll="false">
+	<div ng-include="'tpl/res-sidebar.html'"></div>
+</div>
+<div class="main col-md-10" scroll="true" autoscroll="false">
+  <div class="panel">
   <div class="panel-body">
   
 	    <div class="col-md-3">ID: <a>{{person.id}}</a></div>
@@ -13,7 +17,7 @@
 	    <div class="col-md-3">picture: <img width="70" height="80" src="userpics/{{ person.picture }}.jpg" onerror="this.src='userpics/generic_user.jpg'"/></div>
 	    <div class="col-md-3">Description: <a editable-text="person.description">{{person.description}}</a></div>
   
-  </div>
+  </div></div>
 
   <accordion close-others="false">
     <accordion-group is-open="openpers">
@@ -173,6 +177,8 @@
    </accordion>
 
 
+</div>
+</div>
 </div>
 
 

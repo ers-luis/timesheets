@@ -2,6 +2,7 @@
     {
         "id":"1",
         "institutionid":"1",
+        "institutionname":"1",
         "accountnumber":"000 00 000001",
         "IBAN":"IBXX XXXX XXXX XXXX XXXX",
         "BIC_SWIFT":"BCSWIFT",

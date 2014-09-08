@@ -74,6 +74,10 @@ myTime.run(
 			$rootScope.title = toState.data.title;
 		});
 		
+// 		$rootScope.$on('$routeChangeStart', function(evt, absNewUrl, absOldUrl){
+//         	$window.scrollTo(0,0);    //scroll to top of page after each route change
+// 		});
+		
 
 		// *****
 		// Initialize authentication
